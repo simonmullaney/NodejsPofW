@@ -12,21 +12,20 @@ function randomString() {
 
 
 (function doWork() {
-     const challengeString = randomString();
+     const test = randomString();
      let nonce = 0;
      const startDate = new Date();
-     let hash = crypto.createHash('sha256').update(challengeString + nonce).digest('hex');
+     let hash = crypto.createHash('sha256').update(test + nonce).digest('hex');
 
 
      console.log(difficulty)
 
      while (hash.substr(0, 3) !== difficulty) {
-        hash = crypto.createHash('sha256').update(challengeString + nonce).digest('hex');
+        hash = crypto.createHash('sha256').update(test + nonce).digest('hex');
         console.log(nonce)
         nonce += 1;
      }
      const endDate = new Date();
-     console.log('Found the answer');
-     console.log(`The answer is ${nonce} with a final hash of ${hash}`);
+     console.log(`The nonce is ${nonce} with a final hash of ${hash}`);
      console.log(`${(endDate - startDate) / 1000} seconds to complete`);
 }());
